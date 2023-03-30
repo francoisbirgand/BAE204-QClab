@@ -1,0 +1,80 @@
+---
+title: "Rmarkdown_example_doc"
+author: "François Birgand"
+date: '2023-03-29'
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Markdown
+
+This is an `R Markdown` document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+Until now, when you wrote a report you most likely used `Microsoft Word`, typed your text, inserted tables, and copy/pasted figures or images from another program, often `Microsoft Excel`, or `Microsoft PowerPoint`. 
+
+The problem with that is that after several weeks, you are not so sure about where your figure, data, images really came from and, needless to say after months or years, it is all gone or lost... 
+
+With `R markdown` you put everything together: text, equations, and codes that will generate figures, and tables.
+
+When you click the **Knit** button a document will be generated that includes text, equations, as well as the output of any embedded R codes within the document. 
+
+</br></br>
+
+## Codes and equations
+
+There are 2 types of code: *code chunk* and *embedded code*.
+
+</br>
+
+### Embedded codes
+
+Embedded code are small code pieces that can be added within the text. An example of a phrase containing an embedded code would be:
+
+``The average between 100 and 200 is `r '\x60r (100+200)/2\x60'`. `` 
+
+And that would be rendered as:
+
+The average between 100 and 200 is `r (100+200)/2`.
+
+
+</br>
+
+### Code chunks
+
+Withing code chunks, you just add any R code you want, the code will be run and if there are visible outputs, they will appear in the rendered document. 
+
+You can embed an R code chunk like this:
+
+</br></br>
+
+```{r cars}
+summary(cars)
+```
+
+</br></br>
+
+You can also embed plots, for example:
+
+</br></br>
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+</br>
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+</br></br>
+
+### Equations
+
+Within the text, you can any equation like ```$E = mc^2$``` which would be rendered as $E = mc^2$. The syntax for equations uses that of `LaTex`. All details and examples can be found [here](https://francoisbirgand.github.io/tutorial-RMarkdown_instructions.html#Editing_equations_in_R_Markdown).
+
+</br></br></br>
