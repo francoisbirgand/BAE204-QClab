@@ -1,0 +1,110 @@
+---
+title: "BAE 204 - Homework #7"
+author: "Your Name"
+date: "due 11 April 2023 before midnight"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.height=5, fig.width=9, fig.align="center", echo = FALSE)
+```
+
+For this homework, you are welcome to use all code source I have provided to you before and during lab as appropriate.
+
+# Exercise 1 (10 points)
+
+Following what we did during the lab, plot the yearly hydrograph for the Cuyahoga River at Independence, Ohio. For this, copy/paste the correct code from the the `BAE204-QClab.Rmd` file and paste it in the blank *code chunk* below. The data for the Cuyahoga River at Independence, Ohio is in the `Lin_1h_cuyahoga_all_2008-2009_SI_ref.csv` file. I have added a blank code chunk below you can use throughout. 
+
+This file has 11 columns of data which are:
+
+</br>
+
+```
+"datetime" "Q"        "SS"       "TP"       "SRP"      "NO3"      "TKN"      "Cl"       "SO4"      "Si"       "Cond"
+```
+
+</br>
+
+In the code you will borrow from the `BAE204-QClab.Rmd` file, there is a line that redefines what the column names are using this code: `names(data)=c("datetime","Q","C")`, which essentially gives the name of the three column of the `sample_1hr_QC_data.csv` file. In the Cuhahoga Rver file, you have 11 columns and not 3 anymore. So I suggest you remove the `names(data)=c("datetime","Q","C")` command, as I mentioned during the lab. 
+</br>
+
+Remember that if you want to deal with, e.g., the particular `SO4` column of a dataframe which name would be `data`, you would extract that vector using `data$SO4`.
+
+Make sure you adjust the x-axis label such that it reflects the years. Make sure you modify the title as well such that it reads *Flow rates at Cuyahoga River at Independence, OH*. 
+
+</br></br>
+
+```{r echo=TRUE, eval=TRUE}
+# this is a blank code chunck. You can have/or not have the code appear in the knitted document by switching echo=TRUE or echo=FALSE within the {} of the chunk first line
+# Remove these comments when you copy/paste your code.
+data<-read.csv(file="Lin_1h_cuyahoga_all_2008-2009_SI_ref.csv",header = TRUE)
+
+```
+
+</br></br>
+
+# Exercise 2 (10 points)
+
+Calculate the lowest, highest, mean, median, as well as the 10th and 90th percentile of the flow rates. Make sure you use 3 significant digits. Report them using embedded code as shown in the examples below. if you were to call `meanQ` the average flow, and its value would be `r meanQ=100`, you would write:
+
+- The mean flow was `r signif(meanQ,digits=3)` m^3^/s. 
+
+Apply the same synthax for all the statistics asked for. To calculate a, e.g. 24% percentile of a variable X, use this syntax: `quantile(X,0.24)`
+
+</br></br>
+
+
+# Exercise 3 (20 points)
+
+Calculate the arithmetic average and medium concentrations for nitrate, TP, SRP, and TSS over the entire year of record. SRP stands for Soluble Reactive Phosphorus, and it essentially corresponds to phosphate. You will see that for phosphate, there are some nagative values floating around that are just erroneous. You need to remove them, replace them with `NA` values and calculate the mean omitting the `NA` values in your calculation. For that, use the syntax below. Assuming that PO4 would be the name of the SRP vector, you would use:
+
+```
+PO4[PO4<=0]=NA # this tells R that all values lesser or equal to 0 are to be replaced by NA
+mean(na.omit(PO4)) # this tells R to calculate the mean while omitting the NA values in the calculation. If you do not specify this, R is going to give an error message.
+```
+
+Compare your values to the reference values for agricultural watersheds, which are, respectively, 5 mg N/L, 0.3 mg P/L, 0.03 mg P/L, and 20 mg TSS/L. 
+
+Report your results using this syntax and replace the `___` by embedded code
+
+- The mean concentration for nitrate was ___ mg N/L
+- The median concentration for nitrate was ___ mg N/L.
+
+And so on. Compare mean versus median and discuss the difference. And there almost the same, or not. If they were really different, think about what would is say about the occurrence of high values. Compare them to the reference values we have seen in class. Similarly discuss your findings for the other parameters.
+
+</br></br>
+
+# Exercise 4 (10 points)
+
+Plot the hydrograph and nitrate, TP, SRP, and TSS chemographs for the Cuyahoga River at Independence, Ohio, over the first two weeks of March 2009. You should make 4 plots for that. To 'zoom in' to these two weeks, in the code we used in lab and you probably pasted for exercise 1, the xlim are defined by 'startdate' and 'enddate'. Modify them accordingly.
+
+Using text, report whether the chemographs exhibit a concentration or a dilution effect.
+
+</br></br>
+
+# Exercise 5 (20 points)
+
+Plot the cumulative load of nitrate, TP, SRP, and TSS as a function of cumulative flow volume for the full year for the Cuyahoga River at Independence, Ohio. You should make 4 plots for that, and add a straight line between the first and last point. Make sure you modify the axis title to reflect what you are plotting with the correct units: kg on Y-axis, m^3^ on X-axis. For SRP, you should replace all negative values by 0.005 mg P/L (using the same procedure detailed above), otherwise, you will not be able to calculate the cumulative loads.
+
+Calculate the annual flow weighted average concentrations (FWAC) for nitrate, TP, SRP, and TSS, and compare them to the arithmetic average. Bonus +2: what higher/lower FWAC suggests on concentration/dilution effects.
+
+</br></br>
+
+# Exercise 6 (10 points)
+
+Plot the flow volume duration curve over the entire period of record.
+Report the total flow volume that occurred in 2%, 5%, and 10% of the time, corresponding to the highest flow.
+
+</br></br>
+
+
+# Exercise 7 (20 points)
+
+Plot the cumulative load duration curves for nitrate, phosphate, TP, and TSS over the entire period of record all on the same graph. Make sure you change colors.
+Report the total load that occurred in 2%, 5%, and 10% of the time, corresponding to the highest loads for each of the parameters .
+
+Compare these values to the ones you obtained for flow, and discuss whether or not that makes sense.
+

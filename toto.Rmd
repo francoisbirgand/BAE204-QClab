@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+author: "François Birgand"
+date: '2023-03-30'
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# This is an example of markdown
+
+In here I write all the text I want. It can be *italized*
+
+
+```{r pressure, echo=FALSE}
+2+2
+```
+
+
